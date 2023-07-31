@@ -1,0 +1,428 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+
+\begin{longtable}[]{@{}l@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+title: ``Exercise2'' \\
+output: \\
+pdf\_document: default \\
+html\_document: \\
+df\_print: paged \\
+date: ``2023-07-22'' \\
+\end{longtable}
+
+\hypertarget{r-markdown}{%
+\subsection{R Markdown}\label{r-markdown}}
+
+This is an R Markdown document. Markdown is a simple formatting syntax
+for authoring HTML, PDF, and MS Word documents. For more details on
+using R Markdown see \url{http://rmarkdown.rstudio.com}.
+
+When you click the \textbf{Knit} button a document will be generated
+that includes both content as well as the output of any embedded R code
+chunks within the document. You can embed an R code chunk like this:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Q1}
+\FunctionTok{data}\NormalTok{(rivers)}
+\CommentTok{\#T1}
+\FunctionTok{print}\NormalTok{(rivers)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1]  735  320  325  392  524  450 1459  135  465  600  330  336  280  315  870
+##  [16]  906  202  329  290 1000  600  505 1450  840 1243  890  350  407  286  280
+##  [31]  525  720  390  250  327  230  265  850  210  630  260  230  360  730  600
+##  [46]  306  390  420  291  710  340  217  281  352  259  250  470  680  570  350
+##  [61]  300  560  900  625  332 2348 1171 3710 2315 2533  780  280  410  460  260
+##  [76]  255  431  350  760  618  338  981 1306  500  696  605  250  411 1054  735
+##  [91]  233  435  490  310  460  383  375 1270  545  445 1885  380  300  380  377
+## [106]  425  276  210  800  420  350  360  538 1100 1205  314  237  610  360  540
+## [121] 1038  424  310  300  444  301  268  620  215  652  900  525  246  360  529
+## [136]  500  720  270  430  671 1770
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#T2 method1}
+\FunctionTok{length}\NormalTok{(rivers)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 141
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(rivers)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 591.1844
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{median}\NormalTok{(rivers)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 425
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sd}\NormalTok{(rivers)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 493.8708
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{var}\NormalTok{(rivers)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 243908.4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{min}\NormalTok{(rivers)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 135
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{max}\NormalTok{(rivers)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3710
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#T2 method2}
+\FunctionTok{library}\NormalTok{(Hmisc)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## 载入程辑包：'Hmisc'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     format.pval, units
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{describe}\NormalTok{(rivers)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## rivers 
+##        n  missing distinct     Info     Mean      Gmd      .05      .10 
+##      141        0      114        1    591.2    428.5      230      255 
+##      .25      .50      .75      .90      .95 
+##      310      425      680     1054     1450 
+## 
+## lowest :  135  202  210  215  217, highest: 1885 2315 2348 2533 3710
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#T3}
+\NormalTok{rivers.Des}\FloatTok{.1} \OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\FunctionTok{length}\NormalTok{(rivers),}\FunctionTok{mean}\NormalTok{(rivers),}\FunctionTok{median}\NormalTok{(rivers),}\FunctionTok{sd}\NormalTok{(rivers),}\FunctionTok{var}\NormalTok{(rivers),}\FunctionTok{min}\NormalTok{(rivers),}\FunctionTok{max}\NormalTok{(rivers));rivers.Des}\FloatTok{.1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]    141.0000    591.1844    425.0000    493.8708 243908.4086    135.0000
+## [7]   3710.0000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#T4}
+\NormalTok{river.Des}\FloatTok{.2} \OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{describe}\NormalTok{(rivers)}\SpecialCharTok{$}\NormalTok{counts)}
+\NormalTok{river.Des}\FloatTok{.2}\SpecialCharTok{$}\NormalTok{FeatureName }\OtherTok{\textless{}{-}} \FunctionTok{row.names}\NormalTok{(river.Des}\FloatTok{.2}\NormalTok{)}
+\NormalTok{river.Des}\FloatTok{.2} \OtherTok{\textless{}{-}}\NormalTok{ river.Des}\FloatTok{.2}\NormalTok{[,}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{)] }\CommentTok{\#颠倒了下两个列的顺序}
+\FunctionTok{colnames}\NormalTok{(river.Des}\FloatTok{.2}\NormalTok{) }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}FeatureName\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Values\textquotesingle{}}\NormalTok{)}
+
+\CommentTok{\#Q2}
+\FunctionTok{rm}\NormalTok{(}\AttributeTok{list =} \FunctionTok{ls}\NormalTok{()) }\CommentTok{\#清空所有变量}
+\FunctionTok{data}\NormalTok{(women)}
+\CommentTok{\#T1}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{dim}\NormalTok{(women))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 15  2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#T2}
+\NormalTok{women[}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{6}\NormalTok{),] }\CommentTok{\#前六个}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   height weight
+## 1     58    115
+## 2     59    117
+## 3     60    120
+## 4     61    123
+## 5     62    126
+## 6     63    129
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{women[}\FunctionTok{c}\NormalTok{((}\FunctionTok{dim}\NormalTok{(women)[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{{-}} \DecValTok{6}\NormalTok{)}\SpecialCharTok{:}\FunctionTok{dim}\NormalTok{(women)[}\DecValTok{1}\NormalTok{]),]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    height weight
+## 9      66    139
+## 10     67    142
+## 11     68    146
+## 12     69    150
+## 13     70    154
+## 14     71    159
+## 15     72    164
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#T3}
+\FunctionTok{mean}\NormalTok{(women}\SpecialCharTok{$}\NormalTok{height)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 65
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{var}\NormalTok{(women}\SpecialCharTok{$}\NormalTok{height)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 20
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#T4}
+\NormalTok{women.Height60 }\OtherTok{\textless{}{-}}\NormalTok{ women[}\FunctionTok{which}\NormalTok{(women}\SpecialCharTok{$}\NormalTok{height }\SpecialCharTok{\textgreater{}} \DecValTok{60}\NormalTok{),] }\CommentTok{\#加不加which看起来没区别}
+\CommentTok{\#T5}
+\NormalTok{women.List }\OtherTok{=} \FunctionTok{as.list}\NormalTok{(women)}
+\CommentTok{\#T6}
+\NormalTok{women.matrix }\OtherTok{=} \FunctionTok{as.matrix}\NormalTok{(women)}
+\FunctionTok{print}\NormalTok{(women.matrix)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       height weight
+##  [1,]     58    115
+##  [2,]     59    117
+##  [3,]     60    120
+##  [4,]     61    123
+##  [5,]     62    126
+##  [6,]     63    129
+##  [7,]     64    132
+##  [8,]     65    135
+##  [9,]     66    139
+## [10,]     67    142
+## [11,]     68    146
+## [12,]     69    150
+## [13,]     70    154
+## [14,]     71    159
+## [15,]     72    164
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{t}\NormalTok{(women.matrix))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12] [,13]
+## height   58   59   60   61   62   63   64   65   66    67    68    69    70
+## weight  115  117  120  123  126  129  132  135  139   142   146   150   154
+##        [,14] [,15]
+## height    71    72
+## weight   159   164
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#T7}
+\FunctionTok{cor}\NormalTok{(women)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           height    weight
+## height 1.0000000 0.9954948
+## weight 0.9954948 1.0000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#T8}
+\end{Highlighting}
+\end{Shaded}
+
+Note that the \texttt{echo\ =\ FALSE} parameter was added to the code
+chunk to prevent printing of the R code that generated the plot.
+
+\end{document}
