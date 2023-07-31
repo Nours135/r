@@ -1,6 +1,13 @@
 ---
+output:
+  pdf_document: default
+  html_document: default
+---
+\usepackage{ctex}
+---
 title: "Exercise2"
 output:
+  pdf_document: default
   html_document:
     df_print: paged
 date: "2023-07-22"
@@ -34,15 +41,36 @@ library(Hmisc)
 describe(rivers)
 #T3
 rivers.Des.1 <- c(length(rivers),mean(rivers),median(rivers),sd(rivers),var(rivers),min(rivers),max(rivers));rivers.Des.1
+#T4
+river.Des.2 <- as.data.frame(describe(rivers)$counts)
+river.Des.2$FeatureName <- row.names(river.Des.2)
+river.Des.2 <- river.Des.2[,c(2,1)] #颠倒了下两个列的顺序
+colnames(river.Des.2) = c('FeatureName', 'Values')
+
+#Q2
+rm(list = ls()) #清空所有变量
+data(women)
+#T1
+print(dim(women))
+#T2
+women[c(1:6),] #前六个
+women[c((dim(women)[1] - 6):dim(women)[1]),]
+#T3
+mean(women$height)
+var(women$height)
+#T4
+women.Height60 <- women[which(women$height > 60),] #加不加which看起来没区别
+#T5
+women.List = as.list(women)
+#T6
+women.matrix = as.matrix(women)
+print(women.matrix)
+print(t(women.matrix))
+#T7
+cor(women)
+#T8
+
 ```
 
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

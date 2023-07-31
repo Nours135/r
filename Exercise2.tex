@@ -77,6 +77,16 @@
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -101,16 +111,26 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
-  pdftitle={Exercise2},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
-\title{Exercise2}
 \author{}
-\date{\vspace{-2.5em}2023-07-22}
+\date{\vspace{-2.5em}}
 
 \begin{document}
-\maketitle
+
+\begin{longtable}[]{@{}l@{}}
+\toprule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+title: ``Exercise2'' \\
+output: \\
+pdf\_document: default \\
+html\_document: \\
+df\_print: paged \\
+date: ``2023-07-22'' \\
+\end{longtable}
 
 \hypertarget{r-markdown}{%
 \subsection{R Markdown}\label{r-markdown}}
@@ -262,12 +282,145 @@ chunks within the document. You can embed an R code chunk like this:
 ## [7]   3710.0000
 \end{verbatim}
 
-\hypertarget{including-plots}{%
-\subsection{Including Plots}\label{including-plots}}
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#T4}
+\NormalTok{river.Des}\FloatTok{.2} \OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(}\FunctionTok{describe}\NormalTok{(rivers)}\SpecialCharTok{$}\NormalTok{counts)}
+\NormalTok{river.Des}\FloatTok{.2}\SpecialCharTok{$}\NormalTok{FeatureName }\OtherTok{\textless{}{-}} \FunctionTok{row.names}\NormalTok{(river.Des}\FloatTok{.2}\NormalTok{)}
+\NormalTok{river.Des}\FloatTok{.2} \OtherTok{\textless{}{-}}\NormalTok{ river.Des}\FloatTok{.2}\NormalTok{[,}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{)] }\CommentTok{\#颠倒了下两个列的顺序}
+\FunctionTok{colnames}\NormalTok{(river.Des}\FloatTok{.2}\NormalTok{) }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{\textquotesingle{}FeatureName\textquotesingle{}}\NormalTok{, }\StringTok{\textquotesingle{}Values\textquotesingle{}}\NormalTok{)}
 
-You can also embed plots, for example:
+\CommentTok{\#Q2}
+\FunctionTok{rm}\NormalTok{(}\AttributeTok{list =} \FunctionTok{ls}\NormalTok{()) }\CommentTok{\#清空所有变量}
+\FunctionTok{data}\NormalTok{(women)}
+\CommentTok{\#T1}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{dim}\NormalTok{(women))}
+\end{Highlighting}
+\end{Shaded}
 
-\includegraphics{Exercise2_files/figure-latex/pressure-1.pdf}
+\begin{verbatim}
+## [1] 15  2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#T2}
+\NormalTok{women[}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{6}\NormalTok{),] }\CommentTok{\#前六个}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   height weight
+## 1     58    115
+## 2     59    117
+## 3     60    120
+## 4     61    123
+## 5     62    126
+## 6     63    129
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{women[}\FunctionTok{c}\NormalTok{((}\FunctionTok{dim}\NormalTok{(women)[}\DecValTok{1}\NormalTok{] }\SpecialCharTok{{-}} \DecValTok{6}\NormalTok{)}\SpecialCharTok{:}\FunctionTok{dim}\NormalTok{(women)[}\DecValTok{1}\NormalTok{]),]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    height weight
+## 9      66    139
+## 10     67    142
+## 11     68    146
+## 12     69    150
+## 13     70    154
+## 14     71    159
+## 15     72    164
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#T3}
+\FunctionTok{mean}\NormalTok{(women}\SpecialCharTok{$}\NormalTok{height)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 65
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{var}\NormalTok{(women}\SpecialCharTok{$}\NormalTok{height)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 20
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#T4}
+\NormalTok{women.Height60 }\OtherTok{\textless{}{-}}\NormalTok{ women[}\FunctionTok{which}\NormalTok{(women}\SpecialCharTok{$}\NormalTok{height }\SpecialCharTok{\textgreater{}} \DecValTok{60}\NormalTok{),] }\CommentTok{\#加不加which看起来没区别}
+\CommentTok{\#T5}
+\NormalTok{women.List }\OtherTok{=} \FunctionTok{as.list}\NormalTok{(women)}
+\CommentTok{\#T6}
+\NormalTok{women.matrix }\OtherTok{=} \FunctionTok{as.matrix}\NormalTok{(women)}
+\FunctionTok{print}\NormalTok{(women.matrix)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       height weight
+##  [1,]     58    115
+##  [2,]     59    117
+##  [3,]     60    120
+##  [4,]     61    123
+##  [5,]     62    126
+##  [6,]     63    129
+##  [7,]     64    132
+##  [8,]     65    135
+##  [9,]     66    139
+## [10,]     67    142
+## [11,]     68    146
+## [12,]     69    150
+## [13,]     70    154
+## [14,]     71    159
+## [15,]     72    164
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{t}\NormalTok{(women.matrix))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9] [,10] [,11] [,12] [,13]
+## height   58   59   60   61   62   63   64   65   66    67    68    69    70
+## weight  115  117  120  123  126  129  132  135  139   142   146   150   154
+##        [,14] [,15]
+## height    71    72
+## weight   159   164
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#T7}
+\FunctionTok{cor}\NormalTok{(women)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           height    weight
+## height 1.0000000 0.9954948
+## weight 0.9954948 1.0000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#T8}
+\end{Highlighting}
+\end{Shaded}
 
 Note that the \texttt{echo\ =\ FALSE} parameter was added to the code
 chunk to prevent printing of the R code that generated the plot.
