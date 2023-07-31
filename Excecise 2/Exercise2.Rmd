@@ -4,6 +4,10 @@ output:
   html_document: default
 ---
 \usepackage{ctex}
+
+\begin{document}
+
+
 ---
 title: "Exercise2"
 output:
@@ -71,6 +75,5 @@ cor(women)
 #T8
 
 ```
-
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.

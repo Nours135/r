@@ -77,16 +77,6 @@
 \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
 \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
 \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
-\usepackage{longtable,booktabs,array}
-\usepackage{calc} % for calculating minipage widths
-% Correct order of tables after \paragraph or \subparagraph
-\usepackage{etoolbox}
-\makeatletter
-\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
-\makeatother
-% Allow footnotes in longtable head/foot
-\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
-\makesavenoteenv{longtable}
 \usepackage{graphicx}
 \makeatletter
 \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
@@ -111,26 +101,20 @@
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same}
 \hypersetup{
+  pdftitle={Exercise2},
   hidelinks,
   pdfcreator={LaTeX via pandoc}}
 
+\title{Exercise2}
 \author{}
-\date{\vspace{-2.5em}}
+\date{\vspace{-2.5em}2023-07-22}
 
 \begin{document}
+\maketitle
 
-\begin{longtable}[]{@{}l@{}}
-\toprule\noalign{}
-\endhead
-\bottomrule\noalign{}
-\endlastfoot
-title: ``Exercise2'' \\
-output: \\
-pdf\_document: default \\
-html\_document: \\
-df\_print: paged \\
-date: ``2023-07-22'' \\
-\end{longtable}
+\usepackage{ctex}
+
+\textbackslash begin\{document\}
 
 \hypertarget{r-markdown}{%
 \subsection{R Markdown}\label{r-markdown}}

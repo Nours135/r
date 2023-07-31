@@ -1,11 +1,14 @@
 ---
 title: "exercise3"
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 date: "2023-07-31"
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+library("DBI")
+library("RMySQL")
 ```
 
 ## R Markdown
@@ -15,15 +18,31 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
 ```{r cars}
-summary(cars)
+db = dbConnect(MySQL(),
+               user='root',
+               password='xyc20030116',
+               dbname='r',
+               host='localhost',
+               port=3306)
+
+paperData = read.csv('Example//paper.csv')
+
+dbCreateTable(db, "paper", paperData)  #这个函数好智能
+
+dbWriteTable(db, 'paper', paperData, row.names=FALSE, append=TRUE)
+
+paperFromMysql = dbGetQuery(db, "select * from paper")
+print(dim(paperFromMysql))
+library('stringr')
+
+PaperVirus = paperFromMysql[str_detect(paperFromMysql$st_abstract, 'virus') | str_detect(paperFromMysql$st_title, 'virus') ,] #终于搞定了
+
+
+dbCreateTable(db, "papervirus", PaperVirus)  
+dbWriteTable(db, 'papervirus', PaperVirus, row.names=FALSE, append=TRUE)
+
+dbDisconnect(db)
 ```
 
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
